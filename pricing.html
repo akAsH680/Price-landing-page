@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Development Courses - Elite Infotech Pvt Ltd</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-summary {
+            background: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro-summary h2 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .intro-summary p {
+            color: #555;
+            font-size: 1.2em;
+        }
+
+        .pricing-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px;
+        }
+
+        .pricing-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card h2 {
+            color: #1e3c72;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .pricing-card p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .pricing-card button {
+            background: #3c91e6;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .pricing-card button:hover {
+            background: #326da8;
+        }
+
+        .currency-toggle {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .currency-toggle label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .currency-toggle select {
+            font-size: 16px;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pricing-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pricing-card {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Elite Infotech Pvt Ltd</h1>
+        <p>Java Development Courses with Placement Assistance</p>
+    </header>
+
+    <div class="intro-summary">
+        <h2>Welcome to Elite Infotech Pvt Ltd - Your Gateway to Java Excellence</h2>
+        <p>Embark on a transformative journey into the world of Java development with Elite Infotech Pvt Ltd. Our comprehensive Java Development Courses, coupled with unparalleled placement assistance, pave the way for your success in the dynamic IT landscape.</p>
+    </div>
+
+    <!-- Currency Toggle -->
+    <div class="currency-toggle">
+        <label for="currency">Choose your preferred currency:</label>
+        <select id="currency" onchange="updatePrices()">
+            <option value="INR">Indian Rupees (INR)</option>
+            <option value="USD">US Dollars (USD)</option>
+            <!-- Add more currency options as needed -->
+        </select>
+    </div>
+
+    <div class="pricing-container">
+        <div class="pricing-card" id="basicCard">
+            <h2>Basic Plan</h2>
+            <p id="basicPrice">Rs. 399</p>
+            <button onclick="customize('basic')">Get Started</button>
+        </div>
+
+        <div class="pricing-card" id="beginnerCard">
+            <h2>Beginner Plan</h2>
+            <p id="beginnerPrice">Rs. 699</p>
+            <button onclick="customize('beginner')">Get Started</button>
+        </div>
+
+        <div class="pricing-card" id="proCard">
+            <h2>Pro Plan</h2>
+            <p id="proPrice">Rs. 1299</p>
+            <button onclick="customize('pro')">Get Started</button>
+        </div>
+    </div>
+
+    <script>
+        function customize(plan) {
+            const currency = document.getElementById('currency').value;
+            const prices = {
+                INR: { basic: 399, beginner: 699, pro: 1299 },
+                USD: { basic: 5.42, beginner: 9.48, pro: 17.53 } // Sample conversion rates
+                // Add more currencies and conversion rates as needed
+            };
+
+            document.getElementById(`${plan}Price`).textContent = `${getCurrencySymbol(currency)} ${prices[currency][plan]}`;
+            document.getElementById(`${plan}Card`).querySelector('button').textContent = `Get Started (${getCurrencySymbol(currency)} ${prices[currency][plan]})`;
+        }
+
+        function updatePrices() {
+            customize('basic');
+            customize('beginner');
+            customize('pro');
+        }
+
+        function getCurrencySymbol(currency) {
+            const currencySymbols = {
+                INR: 'Rs.',
+                USD: '$'
+                // Add more currencies and symbols as needed
+            };
+
+            return currencySymbols[currency];
+        }
+    </script>
+</body>
+</html>
